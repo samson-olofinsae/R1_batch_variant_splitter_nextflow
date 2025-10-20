@@ -216,6 +216,7 @@ If you use this in a talk, class, or application dossier, please cite:
 ## License
 
 MIT (c) 2025 Samson Olofinsae. See `LICENSE`.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 ---
 
