@@ -61,3 +61,7 @@ ref/**                # ignore everything under ref/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# Allow shipping curated outputs
+!run_artifacts/**
+!docs/**

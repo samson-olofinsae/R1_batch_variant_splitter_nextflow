@@ -1,0 +1,7 @@
+# id: r1_variant_splitter
+# section_name: R1 Variant Splitter — variant summary
+# description: SNV/INDEL counts per sample (from bcftools outputs)
+# plot_type: table
+# file_format: tsv
+Sample	snvs	indels
+sampleC	21	4
