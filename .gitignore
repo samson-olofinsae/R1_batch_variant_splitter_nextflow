@@ -1,0 +1,63 @@
+# ----------------------------
+# Nextflow runtime & reports
+# ----------------------------
+.nextflow*            # logs, runtime files, .nextflow.log, history, etc
+work/                 # per-process work dirs
+.work/                # (older/alt)
+.pipeline_*           # pipeline_* temp markers
+pipeline_*.html
+pipeline_*.txt
+pipeline_*.svg
+
+# ----------------------------
+# Results (large & disposable)
+# ----------------------------
+results*/
+results_*/
+
+# ----------------------------
+# Container/cache dirs
+# ----------------------------
+.singularity/
+.wave/
+.conda/
+
+# ----------------------------
+# Data: keep demo, ignore user datasets
+# ----------------------------
+data/**               # ignore everything under data/
+!data/demo_fastqs/**  # …except the tiny demo FASTQs
+# (optional) keep a placeholder so the folder exists
+!data/.gitkeep
+
+# ----------------------------
+# References: keep demo, ignore user refs
+# ----------------------------
+ref/**                # ignore everything under ref/
+!ref/demo_ref/**      # …except the tiny demo reference
+# (optional) keep a placeholder
+!ref/.gitkeep
+
+# If you ever add indexes beside the demo FASTA and want to keep them, unignore:
+#!ref/demo_ref/*.fai
+#!ref/demo_ref/*.amb
+#!ref/demo_ref/*.ann
+#!ref/demo_ref/*.bwt
+#!ref/demo_ref/*.pac
+#!ref/demo_ref/*.sa
+
+# ----------------------------
+# Editors / OS cruft
+# ----------------------------
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ----------------------------
+# Python & notebooks (if you add any)
+# ----------------------------
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
