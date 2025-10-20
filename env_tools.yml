@@ -1,0 +1,11 @@
+name: nf_tools
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - bwa
+  - samtools
+  - bcftools=1.20
+  - multiqc
