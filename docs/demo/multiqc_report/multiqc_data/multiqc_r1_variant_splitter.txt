@@ -1,0 +1,4 @@
+Sample	snvs	indels
+sampleA	21	0
+sampleB	18	2
+sampleC	21	4
