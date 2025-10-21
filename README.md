@@ -207,8 +207,8 @@ project_root/
 
 If you use this in a talk, class, or application dossier, please cite:
 
-- **Nextflow** — Di Tommaso *et al.*, *Nat Biotechnol* (2017), doi:10.1038/nbt.3820  
-- **MultiQC** — Ewels *et al.*, *Bioinformatics* (2016), btw354
+- **Nextflow** - Di Tommaso *et al.*, *Nat Biotechnol* (2017), doi:10.1038/nbt.3820  
+- **MultiQC** - Ewels *et al.*, *Bioinformatics* (2016), btw354
 
 
 ---
