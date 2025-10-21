@@ -65,7 +65,7 @@ results_demo/
 Put your files under `data/user_fastqs/` and your reference under `ref/user_ref/` (or point to your own paths), then:
 
 ```bash
-nextflow run main.nf -profile wave,user --reads 'data/user_fastqs/*_{R1,R2}.fastq.gz' --ref 'ref/user_ref/<your_ref>.fa'   --outdir results_user --ploidy 2 --max_cpus 4
+nextflow run main.nf -profile wave,user --reads 'data/user_fastqs/*_{R1,R2}.fastq.gz' --ref 'ref/user_ref/<your_ref>.fa' --outdir results_user --ploidy 2 --max_cpus 4
 ```
 
 > You can resume a previous run safely with `-resume`.
@@ -177,6 +177,7 @@ We ship a small set of **Nextflow profiles**:
 ## Reproducibility
 
 - **Containers from recipes**: The pipeline points Wave at `env_tools.yml` (bwa, samtools, bcftools, python) and `env_multiqc.yml` (multiqc). Wave **builds** and **pins** those environments into container images, eliminating local Conda solver variability.
+Containers frozen with wave.freezeContainers=true for bitwise reproducibility.
 - **Provenance artefacts** (written automatically at the repo root):
   - `pipeline_timeline.html` - interactive run timeline
   - `pipeline_trace.txt` - task-by-task resource stats
@@ -245,7 +246,8 @@ project_root/
   The script auto-runs `samtools faidx` and `bwa index` if needed; ensure the reference is writable (or pre-index it in place).
 - **Singularity/Apptainer not found**  
   Install Apptainer/Singularity or switch Wave to `docker`/`podman` and enable that runtime.
-
+- **/usr/bin/env: ‘python3\r’: No such file or directory**
+  If you see /usr/bin/env: ‘python3\r’: No such file or directory, your checkout has Windows line endings. Fix with git config core.autocrlf input and re-clone, or run sed -i 's/\r$//' scripts/*.py.
 ---
 
 ## Citation
