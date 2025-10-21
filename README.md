@@ -21,7 +21,13 @@ Designed for **reproducibility** (containers via Seqera Wave), **fault tolerance
 >   - **Apptainer/Singularity** (`singularity --version`) **recommended**, or
 >   - Docker/Podman (Wave can target these too, see “Runtimes” below)
 
-### 1) Run the bundled **demo** dataset (fast!)
+### 1) Clone the repo
+```bash
+git clone https://github.com/samson-olofinsae/R1_batch_variant_splitter_nextflow.git
+cd R1_batch_variant_splitter_nextflow
+```
+
+### 2) Run the bundled **demo** dataset (fast!)
 
 ```bash
 nextflow run main.nf -profile wave,demo --ploidy 2 --max_cpus 2
@@ -39,7 +45,7 @@ results_demo/
 └── logs/                 # run_batch.log + per-sample .log/.err + .status
 ```
 
-### 2) Run **your data**
+### 3) Run **your data**
 
 Put your files under `data/user_fastqs/` and your reference under `ref/user_ref/` (or point to your own paths), then:
 
