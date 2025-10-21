@@ -224,7 +224,7 @@ MIT (c) 2025 Samson Olofinsae. See `LICENSE`.
 
 - **Seqera** for Wave and containers guidance.
 - Phil for steering us toward Seqera Containers and training best practices.
-- Everyone testing the demo on WSL2/macOS/Linux—your feedback shaped the ergonomics.
+- Everyone testing the demo on WSL2/macOS/Linux - your feedback shaped the ergonomics.
 
 ---
 
