@@ -80,12 +80,21 @@ Located under `scripts/`, this helper script prepares your workspace for new dat
 
 ```bash
 #!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
-mkdir -p data/user_fastqs ref/user_ref
-touch data/user_fastqs/.gitkeep ref/user_ref/.gitkeep
-echo "Created: data/user_fastqs/ and ref/user_ref/"
-echo "Drop your FASTQs in data/user_fastqs/"
-echo "Put your reference FASTA in ref/user_ref/ (indexes optional; the pipeline will auto-index if missing)"
+
+# Initialise scaffold directories for user data/references in a fresh clone.
+# Creates folders and .gitkeep placeholders so Git tracks the structure.
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "$script_dir/.." && pwd)"
+
+mkdir -p "$repo_root/data/user_fastqs" "$repo_root/ref/user_ref"
+touch "$repo_root/data/user_fastqs/.gitkeep" "$repo_root/ref/user_ref/.gitkeep"
+
+printf 'Created: %s and %s\n' "data/user_fastqs/" "ref/user_ref/"
+printf 'Drop your FASTQs in data/user_fastqs/\n'
+printf 'Put your reference FASTA in ref/user_ref/ (indexes optional; auto-indexed if missing)\n'
 ```
 
 **Purpose:** Ensures reproducible directory structure for users and contributors cloning the repository.
