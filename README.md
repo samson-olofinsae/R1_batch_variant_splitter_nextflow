@@ -1,4 +1,4 @@
-# R1 Batch Variant Splitter (SNV/INDEL) — Nextflow + Seqera Wave
+# R1 Batch Variant Splitter (SNV/INDEL) - Nextflow + Seqera Wave
 
 A compact, teaching-friendly pipeline that aligns paired-end FASTQs, calls variants, and **splits SNVs and INDELs** into dedicated VCFs.  
 Designed for **reproducibility** (containers via Seqera Wave), **fault tolerance** (skips incomplete pairs), and **auditability** (per-sample logs + run reports + MultiQC).
