@@ -27,15 +27,15 @@ results_*/
 # ----------------------------
 data/**               # ignore everything under data/
 !data/demo_fastqs/**  # …except the tiny demo FASTQs
-# (optional) keep a placeholder so the folder exists
-!data/.gitkeep
+!data/user_fastqs/.gitkeep  # keep scaffold placeholder
+!data/.gitkeep        # ensure data folder exists
 
 # ----------------------------
 # References: keep demo, ignore user refs
 # ----------------------------
 ref/**                # ignore everything under ref/
 !ref/demo_ref/**      # …except the tiny demo reference
-# (optional) keep a placeholder
+!ref/user_ref/.gitkeep  # keep scaffold placeholder
 !ref/.gitkeep
 
 # If you ever add indexes beside the demo FASTA and want to keep them, unignore:
@@ -62,7 +62,15 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Allow shipping curated outputs
+# ----------------------------
+# Documentation / curated outputs
+# ----------------------------
 !run_artifacts/**
 !docs/**
 
+# ----------------------------
+# Miscellaneous
+# ----------------------------
+*.bak
+*.tmp
+*.log

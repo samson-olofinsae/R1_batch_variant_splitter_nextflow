@@ -1,6 +1,6 @@
 # R1 Batch Variant Splitter (SNV/INDEL) - Nextflow + Seqera Wave
 
-A compact, teaching-friendly pipeline that aligns paired-end FASTQs, calls variants, and **splits SNVs and INDELs** into dedicated VCFs.  
+A compact, teaching-friendly pipeline that aligns paired-end FASTQs, calls variants, and **splits SNVs and INDELs** into dedicated VCFs.
 Designed for **reproducibility** (containers via Seqera Wave), **fault tolerance** (skips incomplete pairs), and **auditability** (per-sample logs + run reports + MultiQC).
 
 **Highlights**
@@ -21,13 +21,28 @@ Designed for **reproducibility** (containers via Seqera Wave), **fault tolerance
 >   - **Apptainer/Singularity** (`singularity --version`) **recommended**, or
 >   - Docker/Podman (Wave can target these too, see “Runtimes” below)
 
-### 1) Clone the repo
+### Step 0 - Clone the repository
+
 ```bash
 git clone https://github.com/samson-olofinsae/R1_batch_variant_splitter_nextflow.git
 cd R1_batch_variant_splitter_nextflow
 ```
 
-### 2) Run the bundled **demo** dataset (fast!)
+### Step 1 - Initialise user workspace
+
+Before running on your own data, initialise empty directories for your FASTQs and reference files:
+
+```bash
+./scripts/init_user_workspace.sh
+# or manually:
+# mkdir -p data/user_fastqs ref/user_ref
+```
+
+> This script simply creates `data/user_fastqs/` and `ref/user_ref/` if they do not exist,
+> drops `.gitkeep` placeholders, and prints short usage hints.
+> It ensures that fresh clones run cleanly without missing-folder errors.
+
+### Step 2 - Run the bundled **demo** dataset (fast!)
 
 ```bash
 nextflow run main.nf -profile wave,demo --ploidy 2 --max_cpus 2
@@ -45,20 +60,35 @@ results_demo/
 └── logs/                 # run_batch.log + per-sample .log/.err + .status
 ```
 
-### 3) Run **your data**
+### Step 3 - Run **your data**
 
 Put your files under `data/user_fastqs/` and your reference under `ref/user_ref/` (or point to your own paths), then:
 
 ```bash
-nextflow run main.nf -profile wave,user \
-  --reads 'data/user_fastqs/*_{R1,R2}.fastq.gz' \
-  --ref   'ref/user_ref/<your_ref>.fa' \
-  --outdir results_user \
-  --ploidy 2 \
-  --max_cpus 4
+nextflow run main.nf -profile wave,user --reads 'data/user_fastqs/*_{R1,R2}.fastq.gz' --ref 'ref/user_ref/<your_ref>.fa'   --outdir results_user --ploidy 2 --max_cpus 4
 ```
 
 > You can resume a previous run safely with `-resume`.
+
+---
+
+## The `init_user_workspace.sh` script
+
+Located under `scripts/`, this helper script prepares your workspace for new data.
+
+**Source:**
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p data/user_fastqs ref/user_ref
+touch data/user_fastqs/.gitkeep ref/user_ref/.gitkeep
+echo "Created: data/user_fastqs/ and ref/user_ref/"
+echo "Drop your FASTQs in data/user_fastqs/"
+echo "Put your reference FASTA in ref/user_ref/ (indexes optional; the pipeline will auto-index if missing)"
+```
+
+**Purpose:** Ensures reproducible directory structure for users and contributors cloning the repository.
 
 ---
 
@@ -240,3 +270,5 @@ MIT (c) 2025 Samson Olofinsae. See `LICENSE`.
   We intentionally **don’t** prefill `user` paths to keep it portable to any dataset layout.  
 - The demo FASTQs include a mix of SNVs/INDELs so MultiQC tables aren’t degenerate.  
 - For WSL2 users, consider a `.wslconfig` with at least 8 GB RAM and 8 GB swap for smoother local caching.
+
+
