@@ -66,7 +66,17 @@ __pycache__/
 # Documentation / curated outputs
 # ----------------------------
 !run_artifacts/**
-!docs/**
+
+# Ignore everything in docs by default
+docs/**
+
+# Re-include curated demo docs + landing page
+!docs/index.md
+!docs/demo/**
+
+# Keep path scaffolding for user docs but ignore contents
+docs/user/**
+!docs/user/.gitkeep
 
 # ----------------------------
 # Miscellaneous
